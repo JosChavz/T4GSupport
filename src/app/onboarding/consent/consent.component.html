@@ -1,0 +1,61 @@
+<main class="guide">
+  <h1>Research Consent and Privacy Policy</h1>
+  <div class="separator"></div>
+
+  <p>{{ appName }} is a platform that {{ shortProdDesc }}. It is also an experimental platform run by the <a href="https://tech4good.soe.ucsc.edu" target="_blank">Tech4Good Lab</a> for studying {{ shortResearchDesc }}.</p>
+
+  <p>This Research Consent and Privacy Policy describes how and when {{ appName }} collects, uses and shares your information when you use our Services. {{ appName }} receives your information through our website and from our partners and other third parties for the purpose of delivering services, improving them, and conducting research. For example, you send us information when you sign into {{ appName }} with {{ authAppName }}. When using any of our Services you consent to the collection, transfer, manipulation, storage, disclosure and other uses of your information as described in this Research Consent and Privacy Policy.</p>
+
+  <p>This Research Consent and Privacy Policy also describes the research studies you will be participating in, IRB approved under UCSC Study {{ protocolNumber }} titled "{{ protocolTitle }}".</p>
+
+  <h2>Research Study Information</h2>
+
+  <p class="substep"><b>What will you do in the study</b>: {{ studyDoingDesc }}.</p>
+  
+  <p class="substep"><b>Risks or discomforts</b>: While researchers follow procedures to maintain your confidentiality, as with any internet activity, we cannot guarantee confidentiality of interception of data sent via the Internet by any third parties, so there is a risk that your information could be accidentally disclosed. However, we do not see foreseeable risks even if information is accidentally disclosed.</p>
+
+  <p class="substep"><b>Benefits and costs</b>: There are no costs to you for participation. You may benefit by using the platform {{ benefitsDesc }}, but we do not guarantee that any benefits will occur.</p>
+
+  <p class="substep"><b>Voluntary participation</b>: All participation is voluntary and you may choose to discontinue use of the platform at any time.</p>
+
+  <p class="substep"><b>Rights and concerns</b>: If you have questions about this research study, please contact {{ investigatorInfo }} or the faculty member supervising this research {{ facultyInfo }}. If you have any questions regarding your rights as a research participant, please contact the University of California Santa Cruz, Office of Research Compliance Administration at 831-459-1473 or orca@ucsc.edu.</p>
+
+  <h2>Information Collection and Use</h2>
+
+  <p class="substep"><b>Basic Account Information</b>: When you create or reconfigure a {{ appName }} account, you provide some personal information, such as your name and email address.</p>
+
+  <p class="substep"><b>Additional Information</b>: We may use your email address to send you notifications for the projects you are participating in. If we do, you will be able to unsubscribe through your account settings or by following the instructions contained within email notifications. If you email us, we may keep your message, email address and contact information to respond to your request. If you connect your {{ appName }} account to your account on another service, the other service may send us your registration or profile information on that service and other information that you authorize. Providing the additional information described in this section is entirely optional.</p>
+
+  <p class="substep"><b>Service Usage Data</b>: Our Services are primarily designed to {{ usageDataProductDesc }}.</p>
+
+  <p class="substep"><b>Cookies</b>: Like many websites, we use cookies and similar technologies to collect additional website usage data to improve our Services and to conduct research to learn {{ usageDataResearchDesc }}. A cookie is a small data file that is transferred to your computer's hard disk. {{ appName }} may use both session cookies and persistent cookies to better understand how you interact with our Services, to monitor aggregate usage by our users and web traffic routing on our Services, and to customize and improve our Services. Most Internet browsers automatically accept cookies. You can instruct your browser, by changing its settings, to stop accepting cookies or to prompt you before accepting a cookie from the websites you visit. However, some Services may not function properly if you disable cookies.</p>
+
+  <h2>Information Sharing and Disclosure</h2>
+
+  <p class="substep"><b>Transfer of information</b>: We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our website, conducting research, or servicing you, so long as those parties agree to keep this information confidential. Additionally, parties given access to research data will also be IRB approved.</p>
+
+  <p class="substep"><b>Law and Harm</b>: Notwithstanding anything to the contrary in this Policy, we may preserve or disclose your information if we believe that it is reasonably necessary to comply with a law, regulation or legal request; to protect the safety of any person; to address fraud, security or technical issues; or to protect {{ appName }}'s rights or property. However, nothing in this Privacy Policy is intended to limit any legal defenses or objections that you may have to a third party’s, including a government’s, request to disclose your information.</p>
+
+  <h2>Modifying Your Personal Information</h2>
+
+  <p>If you are a registered user of our Services, we provide you with tools and account settings to access or modify the personal information you provided to us and associated with your account.</p>
+
+  <h2>Changes to This Policy</h2>
+
+  <p>We may revise this Privacy Policy from time to time. The most current version of the policy will govern our use of your information and will be at <a routerLink="/consent">{{ consentUrl }}</a>. If we make a change to this policy that, in our sole discretion, is material, we will notify you via an email to the email address associated with your account. By continuing to access or use the Services after those changes become effective, you agree to be bound by the revised Privacy Policy.</p>
+
+  <ng-container *ngIf="{ loading: loading$ | async } as state">
+    <form #checkForm="ngForm" (ngSubmit)="submit$.next()" *ngIf="!state.loading">
+      <div class="agree-container">
+        <mat-checkbox [color]="'primary'" [(ngModel)]="checked" name="checked" required><span style="white-space:normal;" class="permission-text">I have read and understood the above, agree to the terms of use, and consent to participate in the research study.</span></mat-checkbox>
+      </div>
+      <button type="submit" class="btn continue-btn" [disabled]="!checkForm.form.valid">
+        Accept and Continue 
+        <img src="https://icongr.am/feather/arrow-right.svg?size=20&color=B2B6C7">
+      </button>
+    </form>
+    <div class="loading-container" *ngIf="state.loading">
+      Submitting... <mat-spinner [diameter]="20" [strokeWidth]="2"></mat-spinner>
+    </div>
+  </ng-container>
+</main>
