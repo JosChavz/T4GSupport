@@ -1,0 +1,24 @@
+:host {
+  display: block;
+  .help-tooltip-container {
+    position: relative;
+    border-radius: 15px;
+    background-color: #fffadd;
+    padding: 20px 25px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+
+    #help-tooltip-button {
+      position: absolute;
+      bottom: -20px;
+      right: 10px;
+      color: #fffadd;
+      background-color: #9c7168;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 10px 15px;
+      margin: 0;
+      border-radius: 5px;
+    }
+  }
+}

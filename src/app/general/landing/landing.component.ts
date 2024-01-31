@@ -16,6 +16,8 @@ import { RouterNavigate } from '../../core/store/app.actions';
 
 import { User } from '../../core/store/user/user.model';
 import { Login } from '../../core/store/auth/auth.actions';
+import { MatDialog } from '@angular/material/dialog';
+import { HelpModalComponent } from './help-modal/help-modal.component';
 
 @Component({
   selector: 'app-landing',
@@ -45,11 +47,13 @@ export class LandingComponent implements OnInit, OnDestroy {
 
 
   // --------------- EVENT BINDING -----------------------
-
-  /** Login click events. */
-  login$: Subject<void> = new Subject<void>();
-
-
+  promptPopup() {
+    console.log('promptPopup');
+    this.dialog.open(HelpModalComponent, {
+      width: '80%',
+      height: '80%',
+    });
+  }
   // --------------- HELPER FUNCTIONS AND OTHER ----------
 
   /** Unsubscribe observable for subscriptions. */
@@ -61,18 +65,13 @@ export class LandingComponent implements OnInit, OnDestroy {
     private selectors: LandingSelectors,
     private store: Store<fromStore.State>,
     private db: FirebaseService,
+    private dialog: MatDialog,
   ) {
   }
 
   ngOnInit() {
     // --------------- EVENT HANDLING ----------------------
 
-    /** Handle login events. */
-    this.login$.pipe(
-      takeUntil(this.unsubscribe$),
-    ).subscribe(() => {
-      this.store.dispatch(new Login({ provider: 'google.com' }));
-    });
 
     // --------------- LOAD DATA ---------------------------
 

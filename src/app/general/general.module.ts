@@ -12,6 +12,8 @@ import { LandingEffects } from './landing/+state/landing.effects';
 import { LoginComponent } from './login/login.component';
 
 // Components
+import { HelpModalComponent } from './landing/help-modal/help-modal.component';
+import { HelpTooltipComponent } from './landing/help-tooltip/help-tooltip.component';
 
 @NgModule({
   imports: [
@@ -29,6 +31,8 @@ import { LoginComponent } from './login/login.component';
     LandingComponent,
     LoginComponent,
     // Components
+    HelpModalComponent,
+    HelpTooltipComponent,
   ],
   exports: [
   ],
