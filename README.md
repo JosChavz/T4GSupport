@@ -2,6 +2,24 @@
 
 This project was initialized by using [Tech4Good's Angular Schematics](https://github.com/tech4good-lab/angular-schematics) after a base project repository was generated with [Angular CLI](https://github.com/angular/angular-cli). You can check the early commits of package.json to determine the versions used to generate it.
 
+## Contributing
+1. Create a new branch with the `<type>/<description>` format, where `<type>` is one of the following:
+   * `component` for new components
+   * `container` for new containers
+   * `entity` for new entities
+   * `module` for new modules
+   * `feature` for new features
+   * `refactor` for code refactoring
+   * `docs` for documentation changes
+   * `style` for changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+2. Make your changes
+3. Run `ng lint` and `ng test` to ensure your changes pass the tests
+4. Commit your changes
+5. Push your changes to the remote repository
+
+Don't create PRs unless they are important. This repo is strictly meant to show members how to do things in Angular
+using the Tech4Good's Angular Schematics and a clean architecture.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
