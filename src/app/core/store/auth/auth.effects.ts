@@ -119,7 +119,7 @@ export class AuthEffects {
                     new RouterNavigate(
                       ['/home'],
                       { queryParamsHandling: 'preserve' },
-                    )
+                    ),
                   ]),
                   new LoginSuccess({ ...action.payload, ...results }, action.correlationId),
                 ];

@@ -5,10 +5,10 @@
 export const environment = {
   production: false,
   firebase: {
-    projectId: "demo-t4g-support",
+    projectId: 'demo-t4g-support',
   }, // REPLACE WITH CONFIG
   firebaseLogs: {
-    projectId: "demo-t4g-support",
+    projectId: 'demo-t4g-support',
   }, // REPLACE WITH CONFIG
 };
 
