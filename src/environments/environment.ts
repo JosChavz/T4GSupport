@@ -4,8 +4,12 @@
 
 export const environment = {
   production: false,
-  firebase: {}, // REPLACE WITH CONFIG
-  firebaseLogs: {}, // REPLACE WITH CONFIG
+  firebase: {
+    projectId: "demo-t4g-support",
+  }, // REPLACE WITH CONFIG
+  firebaseLogs: {
+    projectId: "demo-t4g-support",
+  }, // REPLACE WITH CONFIG
 };
 
 /*

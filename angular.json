@@ -10,7 +10,8 @@
       "enabled": true,
       "path": ".cache",
       "environment": "all"
-    }
+    },
+    "analytics": false
   },
   "projects": {
     "tech4-good-examples": {
