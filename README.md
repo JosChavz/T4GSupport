@@ -34,11 +34,22 @@ Tech4Good Support is a local-based, read-only repository that allows to teach Te
 
 The goal of this repo is to help you understand how it’s done, and how it works.
 
-There are two versions to look out for, categories:
+There are two versions to look out for on the different branches, categorized as such:
 
 - `template`
     - This a fresh template of the component to be worked on. It will contain the guide in the GUIDE.md file. Varying by the task itself, the components and schema may already be generated, but please read the GUIDE.md file prior development.
 - `result`
     - This is the final working result based off the GUIDE.md file.
+
+![git flow](src/assets/git_images/image.png)
+
+
+Example: If a guide was about handling a container that toggles between two components within, and the task name is `container-toggle`, then:
+
+`template/container-toggle` will be the skeleton that you can work on freely and contains all the files *(containers, components, etc.)* needed, unless told otherwise on the GUIDE.md.
+
+`result/container-toggle` will be the end-result that I wrote it as. You are welcome to checkout to this branch to see the end result for an idea, too, but all steps will be in GUIDE.md.
+
+---
 
 **NOTE:** Note that this is my way of doing the tasks, therefore there is no “one” way to do the tasks! Always think critically before working on the task! Pen and paper is always a bonus.
