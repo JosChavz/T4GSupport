@@ -1,0 +1,5 @@
+<div class="home-container">
+  <ng-container *ngIf="currentUser$ | async as user">
+    {{ user.name }}
+  </ng-container>
+</div>

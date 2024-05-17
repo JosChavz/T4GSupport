@@ -1,0 +1,24 @@
+<div class="waitlist-container">
+  <table id="waitlist-table" mat-table [dataSource]="waitingUsers$" class="mat-elevation-z8">
+
+    <!-- Author Column -->
+    <ng-container matColumnDef="userName">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let user">{{user.name}}</td>
+    </ng-container>
+
+    <!-- Access Status Column -->
+    <ng-container matColumnDef="accessState">
+      <th mat-header-cell *matHeaderCellDef> Access State </th>
+      <td mat-cell *matCellDef="let user">
+        <span class="update-btn" [matMenuTriggerFor]="accessStateMenu" aria-label="accessState">{{ user.accessState }}</span>
+        <mat-menu #accessStateMenu="matMenu">
+          <button mat-menu-item (click)="updateState$.next({ user, key: 'accessState', value: option })" *ngFor="let option of accessOptions">{{ option }}</button>
+        </mat-menu>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
