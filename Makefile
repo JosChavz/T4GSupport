@@ -30,6 +30,10 @@ start-angular:
 check:
 	docker logs firebase-emulators
 
+# Access to the container
+access:
+	docker exec -it firebase-emulators /bin/bash
+
 # Stop and remove the Docker container
 clean:
 	docker stop firebase-emulators
