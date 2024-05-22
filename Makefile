@@ -24,7 +24,7 @@ run:
                $(IMAGE_NAME)
 
 # Start the Angular application interactively
-start-angular:
+serve:
 	docker exec -it firebase-emulators ng serve --host 0.0.0.0
 
 # Check if Firebase emulators are running by inspecting the logs

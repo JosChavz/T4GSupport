@@ -54,4 +54,8 @@ Example: If a guide was about handling a container that toggles between two comp
 
 ---
 
-**NOTE:** Note that this is my way of doing the tasks, therefore there is no “one” way to do the tasks! Always think critically before working on the task! Pen and paper is always a bonus.
+## Important note
+
+Although this is a guide for a various tasks, it is important to learn the fundamentals and execution of the fictional task to help your actual task.
+
+This is my way of doing the tasks, therefore there is no “one” way to do the tasks! Always think critically before working on the task! Pen and paper is always a bonus.
