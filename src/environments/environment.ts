@@ -6,10 +6,14 @@ export const environment = {
   production: false,
   firebase: {
     projectId: 'demo-t4g-support',
-  }, // REPLACE WITH CONFIG
+    appId: 'demo-t4g-support',
+    apiKey: 'demo-t4g-support',
+  },
   firebaseLogs: {
     projectId: 'demo-t4g-support',
-  }, // REPLACE WITH CONFIG
+    appId: 'demo-t4g-support',
+    apiKey: 'demo-t4g-support',
+  },
 };
 
 /*
