@@ -7,6 +7,7 @@ CURRENT_DIR := $(shell pwd)
 # Build the Docker image
 build:
 	docker build -t $(IMAGE_NAME) .
+	docker run --rm -v $(CURRENT_DIR):/usr/src/app -v $(CURRENT_DIR)/node_modules:/usr/src/app/node_modules $(IMAGE_NAME) npm install
 
 # Run the Docker container with Firebase emulators running in the background
 run:
@@ -19,7 +20,7 @@ run:
                -p 9150:9150 \
                -p 4400:4400 \
                -v $(CURRENT_DIR):/usr/src/app \
-               -v /usr/src/app/node_modules \
+               -v $(CURRENT_DIR)/node_modules:/usr/src/app/node_modules \
                $(IMAGE_NAME)
 
 # Start the Angular application interactively
