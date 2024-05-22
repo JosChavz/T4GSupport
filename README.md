@@ -6,7 +6,7 @@ In order for working on this repository you could either run this locally, or us
 
 I **HIGHLY** recommend using Docker as there are issues prone to occur on local machine.
 
-Please download [Docker Desktop](https://www.docker.com/products/docker-desktop/), and have more than 10GB of space.
+Please download [Docker Desktop](https://www.docker.com/products/docker-desktop/), and have more than 5GB of space.
 
 ---
 
@@ -14,7 +14,7 @@ Please download [Docker Desktop](https://www.docker.com/products/docker-desktop/
 
 Run the following commands:
 
-`make build` - This will build the image, install the dependencies, and initializes the Firebase emulator
+`make build` - This will build the image for your container. It will also spin up a temporary container to install the `node_modules` for the container and your local machine. This will allow you use the `eslint` and any other projects if you're IDE requires it.
 
 `make run` - This will create a container which runs the Firebase emulator and also contains the repo's code along with its dependencies
 
@@ -25,6 +25,8 @@ Run the following commands:
 `make access` - This will give you access to the container in the case that something needs to be generated *(e.g. component, container, etc.)*
 
 `make clean` - This will remove the container. Note that all your work is still saved on your local machine.
+
+*Note:* Only run one Angular server that is running on port `4200`. Any other servers that uses a different port will not work due to the Docker container not exposing those ports.
 
 ---
 
