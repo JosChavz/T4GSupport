@@ -21,9 +21,6 @@ RUN mkdir -p /firebase
 # Copy package.json and package-lock.json files
 COPY package*.json ./
 
-# Install project dependencies
-RUN npm install
-
 # Copy the project files into the container
 COPY . .
 
