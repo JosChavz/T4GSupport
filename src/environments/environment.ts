@@ -8,11 +8,13 @@ export const environment = {
     projectId: 'demo-t4g-support',
     appId: 'demo-t4g-support',
     apiKey: 'demo-t4g-support',
+    authDomain: 'demo-t4g-support.firebaseapp.com',
   },
   firebaseLogs: {
     projectId: 'demo-t4g-support',
     appId: 'demo-t4g-support',
     apiKey: 'demo-t4g-support',
+    authDomain: 'demo-t4g-support.firebaseapp.com',
   },
 };
 
