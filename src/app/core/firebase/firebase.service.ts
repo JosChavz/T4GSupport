@@ -13,7 +13,10 @@ export class FirebaseService {
   constructor(
     private afStore: AngularFirestore,
     private afAuth: AngularFireAuth,
-  ) { }
+  ) {
+    this.afStore.firestore.useEmulator('localhost', 8080);
+    this.afAuth.useEmulator('http://localhost:9099/');
+  }
 
   /** Creates a unique id */
   createId = (): string => {
