@@ -5,13 +5,12 @@ import { SharedModule } from '../shared/shared.module';
 import { GeneralRoutingModule } from './general-routing.module';
 
 // Containers
-import { HomeComponent } from './home/home.component';
-import { HomeEffects } from './home/+state/home.effects';
 import { LandingComponent } from './landing/landing.component';
 import { LandingEffects } from './landing/+state/landing.effects';
-import { LoginComponent } from './login/login.component';
 
 // Components
+import { SignupComponent } from './landing/signup/signup.component';
+import { SigninComponent } from './landing/signin/signin.component';
 
 @NgModule({
   imports: [
@@ -19,16 +18,15 @@ import { LoginComponent } from './login/login.component';
     SharedModule,
     GeneralRoutingModule,
     EffectsModule.forFeature([
-      HomeEffects,
       LandingEffects,
     ]),
   ],
   declarations: [
     // Containers
-    HomeComponent,
     LandingComponent,
-    LoginComponent,
     // Components
+    SignupComponent,
+    SigninComponent,
   ],
   exports: [
   ],
