@@ -10,6 +10,9 @@ RUN apk --no-cache add bash git helm openssh yq github-cli openjdk11
 # Install Angular CLI
 RUN npm install -g @angular/cli@17
 
+# Installing PNPM CLI
+RUN npm install -g pnpm
+
 # Install Firebase CLI
 RUN npm install -g firebase-tools
 
