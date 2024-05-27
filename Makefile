@@ -11,6 +11,10 @@ build:
 
 # Run the Docker container with Firebase emulators running in the background
 run:
+	# Removes the container if it exists
+	docker stop firebase-emulators || true
+	docker rm firebase-emulators || true
+	# Run the container with the Firebase emulators
 	docker run -d --name firebase-emulators \
                -p 4200:4200 \
                -p 8080:8080 \
