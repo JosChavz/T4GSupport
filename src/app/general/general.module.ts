@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { EffectsModule } from '@ngrx/effects';
 import { SharedModule } from '../shared/shared.module';
 import { GeneralRoutingModule } from './general-routing.module';
@@ -20,6 +20,7 @@ import { SigninComponent } from './landing/signin/signin.component';
     EffectsModule.forFeature([
       LandingEffects,
     ]),
+    NgOptimizedImage,
   ],
   declarations: [
     // Containers

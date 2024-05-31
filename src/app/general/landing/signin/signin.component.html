@@ -1,3 +1,39 @@
 <div class="signin-container">
-  signin works!
+  <div id="left">
+    <div id="logo"><span>T4G</span></div>
+    <div id="header">
+      <h1>Sign In</h1>
+      <p>Don't have an account? <span>Create Now!</span></p>
+    </div>
+    <form action="">
+      <span class="form-input">
+        <label for="email">Username</label>
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="Email" id="email" name="email" type="email">
+        </mat-form-field>
+      </span>
+
+      <span class="form-input">
+        <label for="password">Password</label>
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="Password" id="password" name="password" type="password">
+        </mat-form-field>
+      </span>
+
+      <p>Forgot password?</p>
+
+      <button mat-flat-button color="primary">Sign In</button>
+    </form>
+
+    <p id="separator">or</p>
+
+    <button id="google-button">
+      <img ngSrc="assets/images/google.svg" alt="Google" height="32" width="32">
+      <span>Sign in with Google</span>
+    </button>
+  </div>
+
+  <div id="right">
+    <img src="" alt="">
+  </div>
 </div>
