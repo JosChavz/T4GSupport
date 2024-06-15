@@ -59,21 +59,3 @@ Example: If a guide was about handling a container that toggles between two comp
 Although this is a guide for various tasks, it is important to learn the fundamentals and execution of the fictional task to help your actual task.
 
 This is my way of doing the tasks; therefore, there is no “one” way to do the tasks! Always think critically before working on the task! Pen and paper are always a bonus.
-
----
-
-## Bonus
-
-Instead of using the traditional `npm`, this project uses `pnpm` for its package management. Although, pnpm is to help reduce the amount of space used on your local machine, and also to help with the speed of the project. It is mainly used for concurrent installations, and also to help with the `node_modules` folder, and time for the image to be created.
-
-| times*          | NPM     | PNPM     |
-|-----------------|---------|----------|
-| Download Speeds | ~5m 83s | ~1m 361s |
-
-*\*Assuming `node:20-alpine` image was installed for Docker.*
-
-Need to delete `node_modules`, `.pnpm-store`, or `pnpm-lock.yaml`? 
-Run:
-```
-sudo rm -rf node_modules .pnpm-store pnpm-lock.yaml
-```
