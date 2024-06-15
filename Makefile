@@ -4,10 +4,10 @@ IMAGE_NAME=my-angular-firebase-app
 # Capture the current directory
 CURRENT_DIR := $(shell pwd)
 
-# Builds the Docker image and makes sure that the node_modules are installed using `pnpm`
+# Builds the Docker image and makes sure that the node_modules are installed using `npm`
 build:
 	docker build -t $(IMAGE_NAME) .
-	docker run --rm -v $(CURRENT_DIR):/usr/src/app -v $(CURRENT_DIR)/node_modules:/usr/src/app/node_modules $(IMAGE_NAME) pnpm install
+	docker run --rm -v $(CURRENT_DIR):/usr/src/app -v $(CURRENT_DIR)/node_modules:/usr/src/app/node_modules $(IMAGE_NAME) npm install
 
 # Run the Docker container with Firebase emulators running in the background
 run:
