@@ -1,31 +1,54 @@
+# Use an official Node.js runtime as a parent image
 FROM node:20-alpine
 
-# Set the working directory in the container
-WORKDIR /usr/src/app
+# Define arguments for user and directory setup
+ARG UID=1000
+ARG GUID=1000
+ARG USERNAME=node
+ARG DIR=/usr/src/app
 
-RUN apk update
-RUN apk upgrade
-RUN apk --no-cache add bash git helm openssh yq github-cli openjdk11
+# Set working directory
+WORKDIR $DIR
 
-# Install Angular CLI
-RUN npm install -g @angular/cli@17
+# Install necessary packages
+RUN apk update && apk upgrade && \
+    apk add --no-cache bash git helm openssh yq github-cli openjdk11 sudo
 
-# Installing PNPM CLI
-RUN npm install -g pnpm
+# Add a user and group ONLY if it does not exist
+RUN if ! getent passwd $UID; then adduser -D -u $UID -s /bin/bash $USERNAME; fi
+RUN if ! getent group $GUID; then addgroup -g $GUID $USERNAME; fi
 
-# Install Firebase CLI
-RUN npm install -g firebase-tools
+# Create directory for npm packages
+RUN mkdir -p "${HOME}/.npm-packages"
 
-RUN firebase setup:emulators:ui
-RUN firebase setup:emulators:firestore
+# Update .bashrc to set npm configuration
+RUN echo "NPM_PACKAGES=${HOME}/.npm-packages" >> ${HOME}/.bashrc \
+    && echo "prefix=${HOME}/.npm-packages" >> ${HOME}/.npmrc \
+    && echo "NODE_PATH=\"\$NPM_PACKAGES/lib/node_modules:\$NODE_PATH\"" >> ${HOME}/.bashrc \
+    && echo "PATH=\"\$NPM_PACKAGES/bin:\$PATH\"" >> ${HOME}/.bashrc \
+    && echo "source ~/.bashrc" >> ${HOME}/.bash_profile
 
-RUN mkdir -p /firebase
+# Source .bashrc to apply changes
+RUN /bin/sh -c "source ${HOME}/.bashrc"
+
+# Install Angular CLI, PNPM CLI, and Firebase CLI as root
+RUN npm install -g @angular/cli@17 \
+    && npm install -g firebase-tools
+
 
 # Copy package.json and package-lock.json files
-COPY package*.json ./
+COPY package*.json $DIR/
 
 # Copy the project files into the container
-COPY . .
+COPY . $DIR/
+
+RUN sudo chown -R $UID:$GUID $DIR
+
+# Set permissions for the npm cache directory
+RUN mkdir -p /tmp/.npm && chown -R $UID:$GUID /tmp/.npm
+
+# Setup Firebase emulators as root
+RUN firebase setup:emulators:ui && firebase setup:emulators:firestore
 
 # Expose the application port and Firebase emulator ports
 EXPOSE 4200 8080 9099 5002 4000 4500 9150 4400

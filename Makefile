@@ -1,21 +1,27 @@
 # Define the image name
-IMAGE_NAME=my-angular-firebase-app
+IMAGE_NAME=my-angular-firebase-app-image
+CONTAINER_NAME=my-angular-app
+DIR=/usr/src/app
 
-# Capture the current directory
+# Capture the current directory and user details
 CURRENT_DIR := $(shell pwd)
+USERNAME := $(shell whoami)
+UID := $(shell id -u)
+GUID := $(shell id -g)
 
 # Builds the Docker image and makes sure that the node_modules are installed using `npm`
 build:
-	docker build -t $(IMAGE_NAME) .
-	docker run --rm -v $(CURRENT_DIR):/usr/src/app -v $(CURRENT_DIR)/node_modules:/usr/src/app/node_modules $(IMAGE_NAME) npm install
+	docker build -t $(IMAGE_NAME) --build-arg="DIR=$(DIR)" --build-arg="UID=$(UID)" --build-arg="USERNAME=$(USERNAME)" --build-arg="GUID=$(GUID)" .
+	docker run --rm -v $(CURRENT_DIR):$(DIR) \
+		-v $(CURRENT_DIR)/node_modules:$(DIR)/node_modules $(IMAGE_NAME) npm install
 
 # Run the Docker container with Firebase emulators running in the background
 run:
-	# Removes the container if it exists
-	docker stop firebase-emulators || true
-	docker rm firebase-emulators || true
-	# Run the container with the Firebase emulators
-	docker run -d --name firebase-emulators \
+# Removes the container if it exists
+	docker stop $(CONTAINER_NAME) || true
+	docker rm $(CONTAINER_NAME) || true
+# Run the container with the Firebase emulators
+	docker container run -d --name $(CONTAINER_NAME) \
                -p 4200:4200 \
                -p 8080:8080 \
                -p 9099:9099 \
@@ -23,23 +29,24 @@ run:
                -p 4500:4500 \
                -p 9150:9150 \
                -p 4400:4400 \
-               -v $(CURRENT_DIR):/usr/src/app \
-               -v $(CURRENT_DIR)/node_modules:/usr/src/app/node_modules \
+							 -u $(UID):$(GUID) \
+               -v $(CURRENT_DIR):$(DIR) \
+               -v $(CURRENT_DIR)/node_modules:$(DIR)/node_modules \
                $(IMAGE_NAME)
 
 # Start the Angular application interactively
 serve:
-	docker exec -it firebase-emulators ng serve --host 0.0.0.0
+	docker exec -it $(CONTAINER_NAME) ng serve --host 0.0.0.0
 
 # Check if Firebase emulators are running by inspecting the logs
 check:
-	docker logs firebase-emulators
+	docker logs $(CONTAINER_NAME)
 
 # Access to the container
 access:
-	docker exec -it firebase-emulators /bin/bash
+	docker exec -it $(CONTAINER_NAME) /bin/bash
 
 # Stop and remove the Docker container
 clean:
-	docker stop firebase-emulators
-	docker rm firebase-emulators
+	docker stop $(CONTAINER_NAME)
+	docker rm $(CONTAINER_NAME)
