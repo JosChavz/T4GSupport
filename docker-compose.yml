@@ -1,0 +1,38 @@
+version: '3'
+services:
+  firebase:
+    tty: true
+    stdin_open: true
+    image: andreysenov/firebase-tools:latest-node-20
+    ports:
+      - "4000:4000"
+      - "5000:5000"
+      - "8080:8080"
+      - "9005:9005"
+      - "9099:9099"
+    volumes:
+      - "./:/home/node"
+    command:
+      - "firebase"
+      - "emulators:start"
+      - "--project"
+      - "demo-t4g-support"
+  app:
+    tty: true
+    stdin_open: true
+    working_dir: /usr/src/app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    volumes:
+      - ".:/usr/src/app"
+      - node_modules:/usr/src/app/node_modules
+volumes:
+  node_modules:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./node_modules
